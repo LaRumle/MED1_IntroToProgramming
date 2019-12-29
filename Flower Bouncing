@@ -1,0 +1,51 @@
+//Global variables
+int r=60;        
+float ballX;
+float ballY;
+float FlowerHeadX = 300;
+float FlowerHeadY = 200;
+int xSpeed = 3;
+int ySpeed = 3;
+int xDirection = 1;
+int yDirection = 1;
+
+void setup() {
+  size(600,400);
+  background(#43AF76);
+}
+
+void draw(){
+   background(#43AF76);
+  // frameRate(5);
+  
+  //float x=10;
+  //float y=10;
+ 
+  flower(ballX,ballY);
+ 
+}
+
+//making the flower class
+
+void flower (float x, float y ) {
+  fill(#FFA005);
+  for (float i=0;i<PI*2;i+=2*PI/5) {
+  float ballX=FlowerHeadX + r*cos(i);
+  float ballY=FlowerHeadY + r*sin(i);
+  ellipse(ballX,ballY,r,r); 
+  }
+  fill(200,0,0);
+  //ellipse(x+width/2,y+height/2,r*1.2,r*1.2);
+  
+  //making it change direction when it meets the border
+  ellipse(FlowerHeadX, FlowerHeadY, r*1.2, r*1.2);
+  FlowerHeadX = FlowerHeadX + (xSpeed * xDirection);
+  FlowerHeadY = FlowerHeadY + (ySpeed * yDirection);
+
+  if (FlowerHeadX > width - r/2|| FlowerHeadX < r/2) {
+    xDirection *= -1;
+  }
+  if (FlowerHeadY > height - r/2|| FlowerHeadY < r/2) {
+    yDirection *= -1;
+  }
+}
